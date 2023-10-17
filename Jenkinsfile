@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('network') {
       steps {
-        sh 'ifconfig'
+        sh 'sh "ifconfig"'
       }
     }
 
