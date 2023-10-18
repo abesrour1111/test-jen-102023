@@ -1,14 +1,27 @@
 pipeline {
-  agent {
-    node {
-      label 'node1'
-    }
-
-  }
+  agent any
   stages {
     stage('network') {
+      parallel {
+        stage('network') {
+          steps {
+            sh 'ifconfig'
+          }
+        }
+
+        stage('stage2') {
+          steps {
+            sh 'cat /etc/passwd'
+          }
+        }
+
+      }
+    }
+
+    stage('stage3') {
       steps {
-        sh 'ifconfig'
+        sh 'cat /etc/group'
+        echo 'fin'
       }
     }
 
